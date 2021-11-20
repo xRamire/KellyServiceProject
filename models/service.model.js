@@ -5,7 +5,13 @@ const serviceSchema = new Schema(
   {
     title: String,
     description: String,
+    serviceType:{
+      type: String,
+      enum: [String],
+      default: String,
+    },
     client: [{ type: Schema.Types.ObjectId, ref: 'Client' }],
+    worker: [{ type: Schema.Types.ObjectId, ref: 'Worker' }],
     reviews: [
       {
         user: String,
@@ -13,7 +19,7 @@ const serviceSchema = new Schema(
       }
     ],
     rating: Number,
-    img_url: String,
+    price: Number
   },
   {
     timestamps: true
