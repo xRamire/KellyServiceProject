@@ -1,20 +1,20 @@
 const router = require("express").Router();
-const User = require("../models/User.model")
+const UserWorker = require("../models/workerUser.model")
 const bcrypt = require("bcrypt")
 ////LOGICA DE SIGNUP////////
-router.get("/signup", (req, res) => res.render("auth/signup"))
+router.get("/worker-signup", (req, res) => res.render("authWorker/signupWorker"))
 
-router.post("/signup", (req, res) => {
+router.post("/worker-signup", (req, res) => {
 
   const { username, password } = req.body
 
   //Comprobamos si existe el usuario
-  User.find({ username })
+  UserWorker.find({ username })
     .then(user => {
 
       //Si ya existe devolvemos error
       if (user.length) {
-        res.render("auth/signup", { errorMessage: "Usuario ya existente." })
+        res.render("authWorker/signupWorker", { errorMessage: "Usuario ya existente." })
       } else {
 
         //Si no generamos el salt...
@@ -24,8 +24,8 @@ router.post("/signup", (req, res) => {
         const hashPass = bcrypt.hashSync(password, salt)
 
 
-        User.create({ username, password: hashPass })
-          .then(createdUser => res.redirect("/auth/login"))
+        UserWorker.create({ username, password: hashPass })
+          .then(createdUser => res.redirect("/authWorker/loginWorker"))
           .catch(err => console.log(err))
       }
 
@@ -34,36 +34,37 @@ router.post("/signup", (req, res) => {
 })
 /////////FIN LOGICA SIGNUP/////////////
 /////////LOGICA LOGIN/////////////
-router.get("/login", (req, res) => {
-  res.render("auth/login")
+router.get("/worker-login", (req, res) => {
+  res.render("authWorker/loginWorker")
 })
 
-router.post("/login", (req, res) => {
+router.post("/worker-login", (req, res) => {
 
   
 
     const { username, password } = req.body
   
     //Buscamos si existe el usuario
-    User.findOne({ username })
+    UserWorker.findOne({ username })
       .then(user => {
   
         //Si el usuario no existe enviamos error
         if (!user) {
-          res.render('auth/login', { errorMessage: 'Usuario no reconocido' })
+          res.render('authWorker/loginWorker', { errorMessage: 'Usuario no reconocido' })
           return
         }
   
         //Si la contraseña no coincide con el hash enviamos error
         if (bcrypt.compareSync(password, user.password) === false) {
-          res.render('auth/login', { errorMessage: 'Contraseña incorrecta' })
+          res.render('authWorker/loginWorker', { errorMessage: 'Contraseña incorrecta' })
           return
         }
   
         //5. Enganchar el objeto de usuario al req.session
         req.session.currentUser = user
         console.log(req.session)
-        res.redirect("/profile")
+    /////////////// TODO PROFILE WORKER
+        res.redirect("/worker-profile")
       })
       .catch(err => console.log(err))
   })
