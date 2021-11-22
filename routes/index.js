@@ -18,8 +18,10 @@ module.exports = (app) => {
   // app.use("/", index);
 
   app.use("/", require("./base.routes"))
-  app.use("/authClient", require("./authClient.routes"));
-  app.use("/authWorker", require("./authWorker.routes"));
+  app.use("/client", require("./client.routes"));
+  app.use("/worker", require("./worker.routes"));
+  app.use("/about", require("./about.routes"))
+  app.use("/review", require("./review.routes"))
 }
 
 
