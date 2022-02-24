@@ -6,9 +6,18 @@
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
  * Kroc Camen, and the H5BP dev community and team.
- */
 
- 
+
+ */ 
+ /* 
+ colores hexagesimales:
+
+ azulClaro: #00B7FF
+ azulOscuro: #0038FF
+ lila: #4800FF
+ morado: #C700FF
+ rosa: #FF00B7
+ rojo:#FF0038 */
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
@@ -99,10 +108,15 @@ textarea {
     padding: 0.2em 0;
 }
 
-a {
+/* a {
     color: #00B7FF;
+} */
+body {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
 }
-
 .active {
     display: block;
     opacity: 1;
@@ -150,6 +164,10 @@ a {
     justify-content: center;
     align-items: center;
     margin-left: 20px;
+}
+.main-Home-nav div a {
+    text-decoration: none;
+
 }
 .main-Home-nav ul {
      
@@ -237,9 +255,13 @@ main {
     justify-content: center;
     align-items: center;
 }
+.cont-links a {
+    text-decoration: none;
+    color: #00B7FF;
 
-.singup-form-Client,
-.singup-form-Worker {
+}
+.singup-form-Client, .login-form-Client,
+.singup-form-Worker, .login-form-Worker {
     width: 50%;
     display: flex;
     position: relative;
@@ -255,13 +277,13 @@ main {
     box-shadow: 0px 6px 25px 6px rgba(178,178,178,0.7);
     opacity: 1;
 }
-.singup-form-Worker {
+.singup-form-Worker, .login-form-Worker, .login-form-Client {
     display:none;
     opacity: 0;
     
 }
-.singup-form-Client form,
-.singup-form-Worker form {
+.singup-form-Client form, .login-form-Client form,
+.singup-form-Worker form, .login-form-Worker form {
     width: 100%;
     position: relative;
     display:flex;
@@ -271,24 +293,24 @@ main {
     gap:  5px;
     
 }
-.singup-form-Client label,
-.singup-form-Worker label {
+.singup-form-Client label, .login-form-Client label,
+.singup-form-Worker label, .login-form-Worker label {
     width: 100%;
      
 }
-.singup-form-Client label p,
-.singup-form-Worker label p {
+.singup-form-Client label p, .login-form-Client label p,
+.singup-form-Worker label p, .login-form-Worker label p {
     margin-bottom: 5px;
 }
-.singup-form-Client form input,
-.singup-form-Worker form input {
+.singup-form-Client form input, .login-form-Client form input,
+.singup-form-Worker form input, .login-form-Worker form input {
     width: -webkit-fill-available;
     height: 30px;
     border-radius: 3px;
     padding: 5px 10px;
 }
  
- .cont-links {
+.cont-links {
      width: 100%;
      display: flex;flex-direction: row;
      justify-content: space-around;
@@ -296,6 +318,7 @@ main {
  }
 .btn {
     width: -webkit-fill-available;
+    min-width: 200px;
     height: 44px;
     font-family: 'Roboto Medium';
     font-size: 16px;
@@ -306,11 +329,65 @@ main {
     border: 1px solid white;
     border-radius: 25px;
     margin: 20px 0px;
+    -webkit-transition: .3s ease-out;
+    -moz-transition: .3s ease-out;
+    -o-transition: .3s ease-out;
+    transition: .3s ease-out;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: white;
+    border: 1px solid #00B7FF;
+    color: #00B7FF;
+}
+.worker-checkbox  {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.worker-checkbox p {
+    margin-bottom:0px;
+    padding: 0px;
+}
+.worker-checkbox label {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+.worker-checkbox label p {
+    width: auto;
+    height: 20px;
+    margin:0px;
+    padding: 0px;
+    display: inline-block;
+}
+.worker-checkbox label input {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+input[type="checkbox"]:before {
+    content: "";
+     
+    width: 20px;
+    height: 20px;
+    background-color: #00B7FF;
     
 }
-/* .btn:hover {
+input[type="checkbox"]:after {
+    content: "";
+     
+    width: 20px;
+    height: 20px;
+    background-color: #00B7FF;
+     
+}
 
-} */
 .main-Home-nav ul li button {
     font-family: 'Roboto Medium';
     font-size: 16px;
@@ -322,9 +399,790 @@ main {
     border: 1px solid white;
     border-radius: 10px;;
 }
+
+.dashboard {
+    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    display: block;
+    position: relative;
+    background-color: #00B7FF;
+    color:white;
+    padding-bottom: 50px;
+}
+.nav-dashboard {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    border-bottom: 2px solid white;
+}
+.nav-dashboard p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+.nav-dashboard div {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    gap: 15px;
+    margin-right: 20px;
+}
+.nav-dashboard div span img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    position: relative;
+    border-radius: 50%;
+    border: 2px solid #f2f2f2;
+}
+.nav-dashboard div img {
+    width: 30px;
+    height: 25px;
+    display: block;
+    position: relative;
+}
+.nav-dashboard div a {
+    color: white;
+    text-decoration: none;
+    -webkit-transition: .3s ease-out;
+    -moz-transition: .3s ease-out;
+    -o-transition: .3s ease-out;
+    transition: .3s ease-out;
+}
+.nav-dashboard div a:hover {
+    color: white;
+    text-decoration: none;
+}
+.nav-dashboard div button {
+    color:white;
+    background-color: #FF0038;
+    border: 0px;
+    border-radius: 4px;
+    color:white;
+    padding: 5px 10px;
+    -webkit-transition: .3s ease-out;
+    -moz-transition: .3s ease-out;
+    -o-transition: .3s ease-out;
+    transition: .3s ease-out;
+}
+.nav-dashboard div button:hover {
+    color:#FF0038;
+    background-color: white;
+}
+.dashboard  h1 {
+    width: 100%;
+    text-align: center;
+}
+.dashboard-content {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap:15px;
+    margin: 0 auto;
+}
+/* Dashboard Client */
+.create-service {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border:2px solid white;
+    border-radius: 4px;
+    /* background-color:rgba(255,255,255,0.8); */
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 10px;
+    order:1;
+} 
+.create-service  span {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.create-service form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+.create-service form label {
+    width: 95%;
+    
+    
+}
+.create-service form label input {
+    width: 100%;
+    height: 25px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border:2px solid white;
+
+
+}
+.create-service form label input.postCode {
+    width: 40%;
+    height: 25px;
+    padding: 3px 10px;
+
+}
+.create-service form label span {
+    width: 100%;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.create-service form label select {
+    width: 50%;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border:2px solid white;
+}
+.create-service form button {
+    max-width: 50%;
+    background-color: #4800FF;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.create-service form button:hover {
+    color: #4800FF;
+    border:2px solid #4800FF;
+    background-color: white;
+}
+
+.current-active-services {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border:2px solid white;
+    border-radius: 4px;
+    /* background-color:rgba(255,255,255,0.8); */
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 10px; 
+    color:white;
+    order:2
+} 
+.current-active-services span {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.current-active-services li {
+    width: 95%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    margin-bottom: 10px;
+    padding: 7px;
+    border-radius: 4px;
+    border: 1px solid white;
+    -webkit-transition: .4s ease-out;
+    -moz-transition: .4s ease-out;
+    -o-transition: .4s ease-out;
+    transition: .4s ease-out;
+}
+.current-active-services li:hover {
+    background-color:rgba(255,255,255,0.5);
+    border:1px solid white;
+    border-radius: 4px;
+}
+.current-active-services li:hover a {
+    color: #4800FF;
+}
+.current-active-services a  {
+    text-decoration: none;
+}
+.current-active-services a p {
+    font-weight: 500;
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.current-active-services a p strong {
+    color: #4800FF;
+}
+/* .current-active-services a strong { font-weight: 900; color: #4800FF;}
+.current-active-services a p {font-weight: 500; color: #4800FF;} */
+.current-active-services a.btn {
+    width: fit-content;
+    min-width: fit-content;
+    height: 20px;
+    text-decoration: none;
+    background-color: #FF0038;
+    color: white !important;
+    padding: 1px 15px;
+    margin: 0px;
+    margin-top: 5px;
+}
+.current-active-services a.btn:hover {
+    color: #FF0038 !important; 
+    background-color: white;
+    border: 2px solid #FF0038; 
+}
+
+
+/* Fin Dashboard Client  azulPastel:#0066D1 azulIntenso:#0300D1 morado:#6B00D1*/
+/* Dashboard Worker */
+.dashboard.worker-dash {
+    background-color: #00B7FF;;
+}
+.dashboard-content.worker-dasboard {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap:15px;
+    margin: 0 auto;
+     
+}
+.resume-offerts {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border: 2px solid white;
+    border-radius: 4px;
+    /* background-color: rgba(255,255,255,0.8); */
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 10px;
+    color: white;
+    order: 2;
+    
+}
+.resume-offerts span {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.resume-offerts  li{
+    width: 95%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 7px;
+    border-radius: 4px;
+    border: 1px solid white;
+    -webkit-transition: .4s ease-out;
+    -moz-transition: .4s ease-out;
+    -o-transition: .4s ease-out;
+    transition: .4s ease-out
+}
+.resume-offerts  li:hover {
+    background-color: rgba(255,255,255,0.5);
+    border: 1px solid white;
+    border-radius: 4px;
+}
+.resume-offerts li a {
+    width: 100%;
+    height: auto;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:flex-start ; */
+    color: white;
+    gap: 10px;
+    text-decoration: none;
+}
+.resume-offerts li a:hover{
+    color: #4800FF;
+}
+.resume-offerts a p {
+    font-weight: 500;
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.resume-offerts a p strong {
+    color: #4800FF;
+}
  
+.worker-active-offerts {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border: 2px solid white;
+    border-radius: 4px;
+    /* background-color: rgba(255,255,255,0.8); */
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 10px;
+    color: white;
+    order: 2;
+}
+.worker-active-offerts {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border: 2px solid white;
+    border-radius: 4px;
+    /* background-color: rgba(255,255,255,0.8); */
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 10px;
+    color: white;
+    order: 2;
+}
+.worker-active-offerts span {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.worker-active-offerts li {
+    width: 95%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    margin-bottom: 10px;
+    padding: 7px;
+    border-radius: 4px;
+    border: 1px solid white;
+    -webkit-transition: .4s ease-out;
+    -moz-transition: .4s ease-out;
+    -o-transition: .4s ease-out;
+    transition: .4s ease-out
+}
+.worker-active-offerts li:hover {
+    background-color: rgba(255,255,255,0.5);
+    border: 1px solid white;
+    border-radius: 4px;
+}
+.worker-active-offerts  a  {
+    text-decoration: none;
+}
+.worker-active-offerts  a p {
+    font-weight: 500;
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.worker-active-offerts  a p strong {
+    color: #4800FF;
+}
+.worker-active-offerts li a:hover {
+    color: #4800FF;
+}
+.worker-active-offerts li button.btn {
+    width: fit-content;
+    max-width: 150px;
+    min-width: fit-content;
+    height: 25px;
+    text-decoration: none;
+    background-color: #FF0038;
+    color: white !important;
+    padding: 1px 15px;
+    margin: 0px;
+    margin-top: 5px;
+}
+/* Dashboard Worker */
+/* service-details */
+.service-details {
+    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    display: block;
+    position: relative;
+    background-color: #00B7FF;
+    color: white;
+    padding: 5% 0px;
+    /* background-image: url(../images/servicios-limpieza6.jpeg);
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-size: cover; */
+} 
+.service-details .cont-details {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    margin:0 auto;
+    background-color:rgba(255,255,255,0.6);
+    border:1px solid white;
+    border-radius: 4px;  
+}
+.service-details .cont-header-details {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+.service-details .cont-header-details span {
+    font-size: 20px;
+    font-weight: bold;
+}
+.service-details span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4800FF;
+}
+.service-details p {
+    margin: 5px 0px;
+    
+}
+
+.service-details a {
+    width: fit-content;
+    height: 20px;
+    text-decoration: none;
+}   
+
+.service-details a.btn {
+    width: fit-content;
+    height: 25px;
+    text-decoration: none;
+    background-color: #FF0038;
+    padding: 1px 15px;
+    margin: 0px;
+}
+.service-details a.btn.back {
+    color: white;
+    background-color: #00B7FF;
+    border: 2px solid white;
+}
+.service-details a.btn.back:hover {
+    color: #00B7FF; 
+    background-color: white;
+    border: 2px solid #00B7FF; 
+}
+.service-details a.btn:hover {
+    color: #FF0038; 
+    background-color: white;
+    border: 2px solid #FF0038; 
+}
+.service-details a.btn.edit {
+    color: white;
+    background-color: #4800FF;
+    border: 2px solid white;
+}
+.service-details a.btn.edit:hover {
+    color: #4800FF; 
+    background-color: white;
+    border: 2px solid #4800FF; 
+}
+/* FIN service-details */
+/*  edit services */
+.edit-services-form {
+    width: 50%;
+    margin-left: 0px !important;
+}
+.edit-services-form label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+     
+}
+.edit-services-form p{
+    color:#4800FF;
+}
+.edit-services-form label input {
+    width: 100%;
+    height: 25px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 2px solid white;
+}
+.edit-services-form label select {
+    width: 50%;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 2px solid white;
+}
+.edit-services-form button.btn.edit {
+    max-width: 182px;
+    color: white;
+    background-color: #4800FF;
+    border: 2px solid white;
+}
+.edit-services-form button.btn.edit:hover {
+    color: #4800FF; 
+    background-color: white;
+    border: 2px solid #4800FF; 
+}
+/* edit Form Profiles */
+.editFormProfiles {
+    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    display: block;
+    position: relative;
+    background-color: #00B7FF;
+    color: white;
+    padding: 5% 0px;
+
+}
+.editFormProfiles .cont-profile {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: rgba(255,255,255,0.6);
+    border: 1px solid white;
+    border-radius: 4px;
+}
+.cont-header-profile {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.cont-header-profile a.btn {
+    width: fit-content;
+    height: 25px;
+    text-decoration: none;
+    background-color: #FF0038;
+    padding: 1px 15px;
+    margin: 0px;
+}
+.cont-header-profile a.btn.back {
+    color: white;
+    background-color: #00B7FF;
+    border: 2px solid white;
+}
+.cont-header-profile span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4800FF;
+}
+.editFormProfiles .cont-profile form {
+    width: 50%;
+    margin-left: 0px !important;
+}
+.editFormProfiles .cont-profile form label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.editFormProfiles .cont-profile form label p {
+    margin: 5px 0px;
+    color: #4800FF;
+}
+.editFormProfiles .cont-profile form label input {
+    width: 100%;
+    height: 25px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 2px solid white;
+}
+.editFormProfiles .cont-profile form label input:last-child {
+    width: 100%;
+    height: 25px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 0px solid white;
+}
+.editFormProfiles .cont-profile form .worker-checkbox label {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:  flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+.editFormProfiles .cont-profile form .worker-checkbox label input {
+    width: 20px;
+    display: block;
+    margin-top: 3px;
+     
+}
+.editFormProfiles .cont-profile form .worker-checkbox span {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4800FF;
+}
 
 
+.editFormProfiles .cont-profile form button.btn.edit {
+    max-width: 182px;
+    color: white;
+    background-color: #4800FF;
+    border: 2px solid white;
+}
+.editFormProfiles .cont-profile form button.btn.edit:hover {
+    color: #4800FF;
+    background-color: white;
+    border: 2px solid #4800FF;
+}
+
+/* FINedit Form Profiles */
+
+
+
+/* FIN edit services */
+/* .map-active-offerts {}
+.resume-active-offerts {}
+.current-offerts {} */
+#map {
+    height: 300px;
+    width: 90%;
+    margin: 0 auto;
+    /* margin-top: 30px; */
+    border:2px solid white;
+    border-radius: 4px;
+}
+
+/*About*/
+.about {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    background-image: url(/images/servicios-limpieza-about.jpeg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: #00B7FF;
+    color: white;
+}
+.about span {
+    font-size: 30px;
+    font-weight: bold;
+    color: #00B7FF;
+    text-transform: uppercase; 
+    margin-left: 10%;
+    margin-bottom: 20px;
+}
+.about div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color:rgba(255,255,255,0.8);
+    border-radius: 4px;
+    border: 2px solid #00B7FF;
+    margin-right: 10%;
+    padding: 20px;
+}
+.about div {
+    color:#00B7FF;
+}
+/*Fin About*/
+
+/*Contact*/
+/*Fin Contact*/
+.contact {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: self-start;
+    background-image: url(/images/servicios-limpieza-contact.jpeg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: #00B7FF;
+    color: white;
+}
+.contact span {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase; 
+    margin-left: 10%;
+    margin-bottom: 20px;
+}
+
+.contact form {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:15px;
+    margin-left: 10%;
+}
+.contact form label {
+    width: 100%;
+    border-radius: 4px;
+    
+}
+.contact form input {
+    width: 100%;
+    height: 20px;
+    border-radius: 4px;
+    border: 2px solid #00B7FF;
+    background-color:rgba(255,255,255,0.8);
+    padding: 5px 15px;
+    color: #00B7FF;
+}
+.contact form textarea {
+    width: 100%;
+    min-height: 200px;
+    border-radius: 4px;
+    border: 2px solid #00B7FF;
+    background-color:rgba(255,255,255,0.8);
+    padding: 5px 15px;
+    color: #00B7FF;
+}
+.contact form input::placeholder,
+.contact form textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #00B7FF;
+    opacity: 1; /* Firefox */
+} 
+.contact form input:-ms-input-placeholder,
+.contact form textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #00B7FF;
+} 
+.contact form input::-ms-input-placeholder,
+.contact form textarea::-ms-input-placeholder { /* Microsoft Edge */
+    color: #00B7FF;
+}
+/*FIN Dashboards*/
+/* Edit Form Profiles */
+.editFormProfiles {
+
+}
+/*Fin Edit Form Profiles */
 
 
 

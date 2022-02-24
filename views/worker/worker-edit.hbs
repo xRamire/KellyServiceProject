@@ -1,20 +1,54 @@
-<div id="form">
-  <h2>Signup</h2>
-
-  <form action="/authWorker/worker-signup" method="POST">
-
-    <label> Username
-      <input type="text" name="username" placeholder="username" />
-    </label>
-
-    <label>Password
-      <input type="password" name="password" placeholder="********" />
-    </label>
-
-    <button type="submit">Signup</button>
-
-    {{#if errorMessage}}
+<div id="form" class="editFormProfiles">
+  <div class="cont-profile"> 
+    <div class="cont-header-profile">
+      <span>Edit Worker Profile</span>
+      <a href="/worker/dashboard" class="btn back"> Back dashboard</a>
+    </div>
+    <form action="/worker/edit?id={{id}}" method="POST" enctype="multipart/form-data">
+      <label>
+        <p>Fullname: </p>
+        <input type="text" name="fullName" value="{{fullName}}" required />
+      </label>
+      <label>
+        <p>Email: </p>
+        <input type="email" name="email" value="{{email}}" required/>
+      </label>
+      <label>
+        <p>Password: </p>
+        <input type="password" name="password" placeholder="********" required/>
+      </label>
+      <label>
+        <p>Address: </p>
+        <input type="text" name="address" value="{{address}}" required/>
+      </label>
+      <label>
+        <p>Post code: </p>
+        <input type="number" name="postcode" value="{{postcode}}" required />
+      </label>
+      <label>
+        <p>Profile Image:</p>
+        <input type="file" name="image" placeholder="Add image" />
+      </label>
+      <div class="worker-checkbox">
+        <br>
+        <span> Services offered: </span>
+        <label>
+          <input type="checkbox" name="serviceType" value="Limpieza" />
+          <p>Cleaning services</p>
+        </label>
+        <label>
+          <input type="checkbox" name="serviceType" value="Canguro" />
+          <p>Babysitting services</p>
+        </label>
+        <label>
+          <input type="checkbox" name="serviceType" value="Jardineria" />
+          <p>Landscaping services</p>
+        </label>
+      </div>
+      <button type="submit" class="btn edit btn-Client-login">Submit</button>
+      {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+      {{/if}}
+    </form>
+  </div>
 </div>

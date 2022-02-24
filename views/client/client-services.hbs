@@ -1,0 +1,60 @@
+<h1>My services</h1>
+
+<a href="/services">Volver a la lista de servicios</a>
+<br>
+<a href="/services/new">Crear servicio</a>
+<br>
+
+
+<ul>
+    {{#each myServices }}
+    <br>
+    <ul>
+        Titulo: {{title}}
+        <br>
+        Descripcion: {{description}}
+        <br>
+        Direccion: {{address}}
+        <br>
+        Codigo postal: {{postcode}}
+        <br>
+        Tipo de servicio: {{serviceType}}
+        <br>
+        Cliente: {{client.fullName}}
+        <br>
+        Candidatos:
+        {{#each candidates}}
+        {{fullName}},
+        {{/each}}
+        <br>
+        Trabajador: {{worker.fullName}}
+        <form action="/services/edit?id={{id}}" method="POST">
+            <label>
+                <select name="worker">
+                    <option>Seleccionar</option>
+                    {{#each candidates}}
+                    <option value="{{id}}">{{fullName}}</option>
+                    {{/each}}
+                </select>
+                <button type="submit">Asignar trabajador</button>
+            </label>
+        </form>
+        Estado del servicio: {{status}}
+        <br>
+
+        <form action="/services/edit?id={{id}}" method="POST">
+            <label>
+                <button type="submit" name="status" value="Completed"> Completado </button>
+            </label>
+        </form>
+
+        <form action="/services/edit?id={{id}}" method="POST">
+            <label>
+                <button type="submit" name="status" value="Pending"> Pendiente </button>
+            </label>
+        </form>
+    <a href="/reviews/new">Crear review</a>
+    </ul>
+    <br>
+    {{/each}}
+</ul>

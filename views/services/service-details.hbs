@@ -1,0 +1,51 @@
+{{#with service}}
+
+<div class="service-details">
+    <div class="cont-details">
+        
+        <div class="cont-header-details">
+            <span>Service Details</span>
+        {{#if ../isClient }}
+        <a href="/client/dashboard" class="btn back"> Back dashboard client </a> 
+        {{/if}}
+
+        {{#if ../isWorker }}
+        <a href="/worker/dashboard" class="btn back"> Back Dashboard worker </a> 
+        {{/if}}
+
+        </div>
+        {{!-- <span>{{title}}</span> --}}
+        <p><span>Descripcion: </span>  {{description}}</p>       
+        <p><span>Direccion: </span>  {{address}}</p>
+        <p><span>Codigo postal: </span>  {{postcode}}</p>
+        <p><span>Tipo de servicio: </span>  {{serviceType}}</p>      
+        <p><span>Cliente: </span>  {{client.fullName}}</p>
+        <p><span>Candidatos: </span> 
+        {{#each candidates}}
+                {{fullName}},
+            {{/each}}
+        </p>
+        <p><span>Trabajador: </span>  {{worker.fullName}}</p>
+        <p><span>Estado del servicio: </span>  {{status}}</p>
+
+        
+        <div class="detail-btn">
+
+            {{#if ../isClient }}
+            {{!-- <--- solo visible para cliente --}}
+            <a href="/services/edit?id={{id}}" class="btn edit">Edit</a> 
+            {{!-- <--- solo visible para cliente --}}
+            <a href="/services/delete?id={{id}}" class="btn">Cancel</a>
+            {{/if}}
+
+            {{#if ../isWorker }}
+            {{!-- <--- solo visible para trabajador --}}
+            <form action="/services/apply?id={{id}}" method="POST">
+            <button class="btn edit" type="submit" name="candidates"> Aplicar al servicio </button>
+            </form>
+            {{/if}}
+        </div>
+       
+{{/with}}
+
+

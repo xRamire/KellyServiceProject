@@ -1,0 +1,52 @@
+<div class="service-details">
+    <div class="cont-details">
+        <div class="cont-header-details extra-edit">
+            <span>Edit service</span>
+            <div>
+                {{!-- <a href="/services" class="btn back">Back service lists</a> --}}
+                <a href="/services/my-services" class="btn back">Back service</a>
+            </div>
+        </div>
+
+
+        {{#with service}}
+        <form action="/services/edit?id={{id}}" method="POST" class="edit-services-form">
+
+            <label>
+                <p>Tittle: </p> 
+                <input name="title" value="{{title}}" type="text" >
+            </label>
+            <label>
+                <p>Description: </p> 
+                <input name="description" value="{{description}}" type="text">
+            </label>
+            <label>
+                <p>Address: </p> 
+                <input name="address" value="{{address}}" type="text">
+            </label>
+            <label>
+                <p>Post code: </p> 
+                <input name="postcode" value="{{postcode}}" type="number">
+            </label>
+            <label><p>Service Type:</p> 
+                <select name="serviceType">
+                    <option value="Limpieza">Cleaning services</option>
+                    <option value="Canguro">Babysitting services</option>
+                    <option value="Jardineria">Landscaping services</option>
+                </select>
+            </label>
+            {{/with}}
+            
+            {{!-- <label>
+                <input name="candidates" type="">
+            </label> --}}
+
+            {{!-- <label>
+                <input name="client" type="">
+            </label> --}}
+            <button type="submit" class="btn edit">submit</button>
+
+        </form>
+
+    </div>
+</div>
