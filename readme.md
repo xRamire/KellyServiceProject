@@ -1,7 +1,7 @@
 # KellyServices
 Portal to find a job or hire a worker for home tasks.
 
-Tecnologies: Javascript, NodeJs, ExpressJs, MongoDB, HBS, CSS.
+Technologies: Javascript, NodeJs, ExpressJs, MongoDB, HBS, CSS.
 
 
 Project website: https://kellyservices.herokuapp.com/
